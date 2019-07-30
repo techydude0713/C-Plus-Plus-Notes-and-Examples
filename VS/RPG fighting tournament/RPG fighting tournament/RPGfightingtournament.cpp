@@ -1,10 +1,9 @@
 // RPG fighting tournament.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
-#include "pch.h"
-#include <iostream>
-#include <fstream>
 #include "main.h"
+
+
 using namespace std;
 
 
@@ -34,18 +33,20 @@ int main() {
 	setupPlayerStats(player1Name, player1Str, player1Def, player1Armor, player1Skill, player1Wins);
 
 	cout << "Setup Player 2" << endl;
+    cout << player2Name;
 	setupPlayerStats(player2Name, player2Str, player2Def, player2Armor, player2Skill, player2Wins);
 
 	int player1Health = 20;
 	int player2Health = 20;
 	int turns = 0;
-
+    cout << "\n\n\n";
 	cout << player1Name << " - " << player1Wins << " Wins" << endl;
 	cout << "- vs. -" << endl;
 	cout << player2Name << " - " << player2Wins << " Wins" << endl;
-
-	cout << "FIGHT!";
-
+    cout << "~~~~~~~~~~\n";
+    cout << "{ FIGHT! }\n";
+    cout << "~~~~~~~~~~\n";
+    
 	while (player1Health > 0 && player2Health > 0 && turns < 100) {
 		int attackRoll;
 		int damageRoll;
@@ -85,24 +86,39 @@ int main() {
 		cout << player2Name << " HP: " << player2Health << endl;
 		turns++;
 	}
-
+    if ((player1Health > 0 && player2Health > 0) || (player1Health < 0 && player2Health < 0)) {
+        cout << "Draw!" << endl;
+    }
+    else if (player1Health > 0) {
+        cout << player1Name << " wins!" << endl;
+        player1Wins++;
+    }
+    else {
+        cout << player2Name << " wins!" << endl;
+        player2Wins++;
+    }
+    
+    // Save records to a file:
+    savePlayerStats(player1Name, player1Str, player1Def, player1Armor, player1Skill, player1Wins);
+    savePlayerStats(player2Name, player2Str, player2Def, player2Armor, player2Skill, player2Wins);
 }
 
 void setupPlayerStats(string &name, int &str, int &def, int &armor, int &skill, int &wins) {
 
-	fstream file;
-
-	cout << "\nName: ";
-
-	getline(cin, name);
+    fstream file;
+    cout << "Name: ";
+//getline(cin, name);
 
 	// If they enter no name, use a default
-	if (name == "") {
-		name = "John Doe";
-	}
-
+    while (name == ""){
+        getline(cin, name);
+        if (name == ""){
+            cout << "Please enter a name.\n";
+            cout << "Name: ";
+        }
+    }
 	string filename = name + ".txt";
-
+    
 	file.open(filename, ios::in); 
 	if (file.is_open()) {
 		cout << "Retrived file...";
@@ -137,7 +153,6 @@ void setupPlayerStats(string &name, int &str, int &def, int &armor, int &skill, 
 			cout << "Player Skill: ";
 			cin >> skill;
 			points -= skill;
-			cout << points << " points left.\n";
 			
 			if (points >= 0) {
 				accepted = true;

@@ -1,0 +1,4 @@
+﻿  pch.cpp
+  RPG fighting tournament.cpp
+c:\users\id student\source\repos\rpg fighting tournament\rpg fighting tournament\rpg fighting tournament.cpp(51): warning C4101: 'damageRoll': unreferenced local variable
+  RPG fighting tournament.vcxproj -> C:\Users\iD Student\source\repos\RPG fighting tournament\x64\Debug\RPG fighting tournament.exe

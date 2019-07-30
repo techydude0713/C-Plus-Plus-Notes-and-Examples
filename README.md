@@ -1,1 +1,3 @@
-# C-Notes-and-Examples
+# C++ Notes and Examples
+
+In the works....

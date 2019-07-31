@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:/Users/guy/Downloads/C-Plus-Plus-Notes-and-Examples/Xcode/PetRockGame/PetRockGame/character.h">
+   </FileRef>
+   <FileRef
+      location = "self:PetRockGame.xcodeproj">
+   </FileRef>
+</Workspace>
